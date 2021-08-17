@@ -11,7 +11,6 @@ if not os.getenv('DJANGO_SETTINGS_MODULE', ''):
 
 CELERY_TASKS = [
     'app.api.helpers.tasks',
-    'app.api.crm.helpers.message_helper'
 ]
 
 app = Celery('app', include=CELERY_TASKS)

@@ -1,0 +1,46 @@
+mutation createEmployee{
+  createEmployee(input:{
+      status:"F"
+      gender:"M"
+      firstName:"Alfred"
+      lastName:"Nyambane"
+      otherNames:"Luther"
+      email:"tutorialcreation81@gmail.com"
+      address:"Nairobi"
+      phoneNumbers:["+254700701209"]
+      emergencyNumbers:["+254721300256"]
+      dateOfBirth:"1996-02-03"
+      #jobTitle:""
+      #employerName:""
+      #department:""
+      hiringDate:"2019-03-07"
+      currentSalary:5441.00
+      startingSalary:2456.00
+      qualifications:["get"]
+      #completedCourses:""
+      rateHour:54.23
+      period:"M"
+      perPeriod:2
+      #grade:""
+      
+  })
+  
+  {
+    
+      status
+      message
+      employee{
+        deletedAt
+        id
+        status
+        gender
+        firstName
+        lastName
+        otherNames
+        email
+      }
+    
+  }
+
+}
+

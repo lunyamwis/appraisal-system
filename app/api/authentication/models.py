@@ -87,6 +87,6 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
 
         This string is used when a `User` is printed in the console.
         """
-        return "{} - {}".format(self.email, self.agency.name)
+        return "{}".format(self.email)
 
         

@@ -1,0 +1,87 @@
+query getEmployees ($search:String, $page:Int, $limit:Int){
+  employees(
+    search:$search,
+    page:$page,
+    limit:$limit)
+  {
+    count
+    pages
+    hasNext
+    hasPrev
+    items
+    {
+      id
+      deletedAt
+      status
+      gender
+      firstName
+      lastName
+      otherNames
+      email
+      phoneNumbers
+      emergencyNumbers
+      dateOfBirth
+      jobTitle{
+        titleName
+      }
+      employerName{
+        businessName
+        employerDetails{
+          firstName
+          lastName
+          username
+        }
+      }
+      department{
+        departmentName
+      }
+      hiringDate
+      grade{
+        gradeName
+        gradeBasic
+      }
+
+    }}}
+
+
+
+
+
+
+
+
+query getEmployee ($id:String){
+  employee(id:$id)
+  {
+    id
+      deletedAt
+      status
+      gender
+      firstName
+      lastName
+      otherNames
+      email
+      phoneNumbers
+      emergencyNumbers
+      dateOfBirth
+      jobTitle{
+        titleName
+      }
+      employerName{
+        businessName
+        employerDetails{
+          firstName
+          lastName
+          username
+        }
+      }
+      department{
+        departmentName
+      }
+      hiringDate
+      grade{
+        gradeName
+        gradeBasic
+      }
+  
+ }}

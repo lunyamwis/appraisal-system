@@ -25,6 +25,9 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'brooks_insurance_agency_software_2021')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+LOGGING = { 'version': 1, 'disable_existing_loggers': False, 
+            'handlers': { 'file': { 'level': 'DEBUG', 'class': 'logging.FileHandler', 'filename': '/tmp/debug.log', }, },
+            'loggers': { 'django': { 'handlers': ['file'], 'level': 'DEBUG', 'propagate': True, }, }, }
 # Application definition
 
 INSTALLED_APPS = [
@@ -48,7 +51,10 @@ INSTALLED_APPS = [
     'app.api',
     'app.api.roles',
     'app.api.authentication',
+    'app.api.employee',
 ]
+
+
 SAFE_DELETE_INTERPRET_UNDELETED_OBJECTS_AS_CREATED=True
 AUTH_USER_MODEL = 'authentication.User'
 ROLEPERMISSIONS_MODULE = "app.api.roles.roles"

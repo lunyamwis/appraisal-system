@@ -49,9 +49,9 @@ class Query(ObjectType):
                 Q(phone_number__icontains=search)
             )
             users = User.objects.filter(
-                filter, agency=info.context.user.agency).all()
+                filter,username=info.context.user.username).all()
         else:
-            users = User.objects.filter(agency=info.context.user.agency).all()
+            users = User.objects.filter(username=info.context.user.username).all()
             if is_staff:
                 users = users.filter(is_staff=True)
         users = users.order_by('first_name')

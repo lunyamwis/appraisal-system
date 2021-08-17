@@ -1,7 +1,8 @@
 USER_REQUIRED_FIELD = ['first_name', 'last_name',
                        'username', 'email', 'password', 'phone_number']
-AGENCY_REQUIRED_FIELD = ['name', 'office_location', "image_url",
-                         'box_number', 'phone_number', 'agency_email', 'phone_number']
+EMPLOYEE_REQUIRED_FIELD = ['first_name', 'last_name', "email"]
+EMPLOYER_REQUIRED_FIELD = ['location']
+COURSE_REQUIRED_FIELD = ['course_name']
 INDIVIDUAL_CLIENT_REQUIRED_FIELD = ['first_name', 'last_name', 'gender']
 CORPORATE_CLIENT_REQUIRED_FIELD = ['name', ]
 RECEIPT_REQUIRED_FIELD = ["transaction_date",
