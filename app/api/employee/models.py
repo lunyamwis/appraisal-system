@@ -83,6 +83,8 @@ class Grade(BaseModel):
     grade_bonus = models.FloatField()
     grade_pf = models.CharField(max_length=255)
 
+class SubDepartment(BaseModel):
+    name =  models.CharField(max_length=255)
 
 class Department(BaseModel):
     """
@@ -95,9 +97,13 @@ class Department(BaseModel):
         - pay_grade(foreignkey field)
 
     """
+
     department_name = models.CharField(max_length=255)
+    sub_departments = models.ManyToManyField(SubDepartment)
     pay_grade = models.ForeignKey(Grade, on_delete=models.CASCADE,
                                 null=True, blank=True)
+
+
 
 
 class Title(BaseModel):
@@ -196,6 +202,7 @@ class Employee(BaseModel):
         default=GenderOptions.MALE,
         blank=False, unique=False
     )
+    employee_number = models.CharField(max_length=255,null=True,blank=True)
     first_name = models.CharField(max_length=255, blank=False)
     last_name = models.CharField(max_length=255, blank=False)
     other_names = models.TextField(blank=False)

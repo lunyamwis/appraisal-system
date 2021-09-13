@@ -11,6 +11,7 @@ from .models import (
     Title,
     Course,
     Payroll,
+    SubDepartment
 )
 
 
@@ -33,37 +34,14 @@ class EmployeeType(DjangoObjectType):
     for the Employee model
     class Employee()
     """
-    status = graphene.String()
-    period = graphene.String()
-    gender = graphene.String()
-
+    status =graphene.String()
+    
     class Meta:
         """
         This class defines the fields
         to be serialized in the user model
         """
         model = Employee
-
-    def resolve_status(self, *args):
-        '''
-        this method is meant to
-        returns the full status name
-        '''
-        return self.get_status_display()
-
-    def resolve_period(self, *args):
-        '''
-        this method is meant to
-        returns the full period name
-        '''
-        return self.get_period_display()
-
-    def resolve_gender(self, *args):
-        """
-        this method is meant to return
-        the full gender representation
-        """
-        return self.get_gender_display()
 
 
 class DepartmentType(DjangoObjectType):
@@ -77,6 +55,19 @@ class DepartmentType(DjangoObjectType):
         to be serialized in the user model
         """
         model = Department
+
+
+class SubDepartmentType(DjangoObjectType):
+    """
+    This class creates a graphql type
+    for the Department model
+    """
+    class Meta:
+        """
+        This class defines the fields
+        to be serialized in the user model
+        """
+        model = SubDepartment
 
 
 class GradeType(DjangoObjectType):
@@ -98,7 +89,6 @@ class CourseType(DjangoObjectType):
     for the course model
     """
     course_level = graphene.String()
-
     class Meta:
         """
         This class defines the fields
@@ -106,13 +96,6 @@ class CourseType(DjangoObjectType):
         """
         model = Course
 
-    def resolve_course_level(self, *args):
-        """
-        this method is meant to return 
-        the full representation of the 
-        course level field
-        """
-        return self.get_course_level_display()
 
 
 class TitleType(DjangoObjectType):
@@ -161,6 +144,12 @@ class EmployerInput(graphene.InputObjectType):
     industry = graphene.String()
     size = graphene.String()
 
+class SubDepartmentInput(graphene.InputObjectType):
+    """
+    This class creates input object types for
+    the Employee model
+    """
+    name = graphene.String()
 
 class DepartmentInput(graphene.InputObjectType):
     """
@@ -169,6 +158,7 @@ class DepartmentInput(graphene.InputObjectType):
     """
     department_name = graphene.String()
     pay_grade = graphene.String()
+    sub_departments = graphene.List(SubDepartmentInput)
 
 
 class TitleInput(graphene.InputObjectType):
@@ -302,6 +292,7 @@ class EmployeeInput(graphene.InputObjectType):
     """
 
     first_name = graphene.String()
+    employee_number = graphene.String()
     last_name = graphene.String()
     other_names = graphene.String()
     email = graphene.String()

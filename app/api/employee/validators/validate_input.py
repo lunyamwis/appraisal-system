@@ -41,6 +41,7 @@ class EmployeeValidations:
         input_data['first_name'] = kwargs.get('first_name', None)
         input_data['last_name'] = kwargs.get('last_name', None)
         check_empty_fields(data=input_data)
+        input_data['employee_number'] = kwargs.get('employee_number',None)
         input_data['status'] = kwargs.get('status', None)
         input_data['gender'] = kwargs.get('gender', None)
         input_data['other_names'] = kwargs.get('other_names', None)
@@ -64,10 +65,25 @@ class EmployeeValidations:
         check_email_validity(
             input_data['email']) if input_data['email'] else ""
 
+        if input_data['grade']:
+            input_data['grade'] = validate_object_id(
+                input_data['grade'], Grade,
+                "Grade")
+
         if input_data['job_title']:
             input_data['job_title'] = validate_object_id(
                 input_data['job_title'], Title,
                 "Title")
+        
+        if input_data['employer_name']:
+            input_data['employer_name'] = validate_object_id(
+                input_data['employer_name'], Employer,
+                "Employer")
+
+        if input_data['completed_courses']:
+            input_data['completed_courses'] = validate_object_id(
+                input_data['completed_courses'], Course,
+                "Course")
 
         return input_data
 
@@ -240,7 +256,12 @@ class EmployeeValidations:
         
         input_data = {}
         input_data['department_name']=kwargs.get('department_name',None)
+        input_data['sub_departments'] = kwargs.get('sub_departments',[])
         input_data['pay_grade']=kwargs.get('pay_grade',None)
+        if input_data['pay_grade']:
+            input_data['pay_grade'] = validate_object_id(
+                input_data['pay_grade'], Grade,
+                "Grade")
         return input_data
 
 
@@ -256,7 +277,13 @@ class EmployeeValidations:
             input_data (dict):validated data
         """
         validate_object_id(department_id,Department,"Department")
+        if data['pay_grade']:
+            data['pay_grade'] = validate_object_id(
+                data['pay_grade'], Grade,
+                "Grade")
         data_ = check_empty_fields(data)
+    
+    
 
         return data_
 

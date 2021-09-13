@@ -26,7 +26,6 @@ from .helpers.employee_helpers import get_default_status
 
 
 class Query(ObjectType):
-    status = GenericScalar()
     employee = graphene.Field(EmployeeType, id=graphene.String())
     employees = graphene.Field(
         EmployeePaginatedType,
@@ -78,10 +77,10 @@ class Query(ObjectType):
     )
 
 
-    @token_required
-    @login_required
-    def resolve_status(self, info, **kwargs):
-        return get_default_status()
+    # @token_required
+    # @login_required
+    # def resolve_status(self, info, **kwargs):
+    #     return get_default_status()
 
     @token_required
     @login_required
